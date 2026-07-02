@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Для Тигоря ♡</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <style>
     * {
       margin: 0;
@@ -25,7 +28,6 @@
       transition: background 0.5s;
     }
 
-    /* УВЕДОМЛЕНИЕ */
     .notification {
       position: fixed;
       top: -80px;
@@ -644,7 +646,6 @@
 </head>
 <body class="theme-pink">
 
-<!-- УВЕДОМЛЕНИЕ -->
 <div class="notification" id="notification">смотри, это же доходяга!!</div>
 
 <button id="color-menu-toggle" title="Настройки">⚙️</button>
@@ -756,7 +757,6 @@
 </div>
 
 <script>
-  // --- УВЕДОМЛЕНИЕ ---
   const notification = document.getElementById('notification');
 
   function showNotification() {
@@ -766,14 +766,12 @@
     }, 4000);
   }
 
-  // --- MP3 АУДИО ДЛЯ ДОХОДЯГИ ---
   const mp3Dohodyaga = new Audio('https://github.com/mackerelll-off/My-site-sounds/raw/refs/heads/main/copy_FCE512F0-CFF9-4B95-AD49-DE5E8D650EF5.mp3');
   mp3Dohodyaga.loop = true;
-  mp3Dohodyaga.volume = 0.05; // 5% громкости
+  mp3Dohodyaga.volume = 0.05;
 
   let dohodyagaMusicActive = false;
 
-  // --- АУДИО СИСТЕМА ---
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   let masterGain = audioCtx.createGain();
   masterGain.connect(audioCtx.destination);
@@ -799,34 +797,13 @@
     if (type === 'off') return;
 
     const notes = {
-      ambient: [
-        [262, 293, 330, 349, 392, 349, 330, 293],
-        [392, 440, 392, 349, 330, 293, 262, 293]
-      ],
-      piano: [
-        [523, 587, 659, 698, 784, 880, 784, 698],
-        [659, 587, 523, 494, 523, 587, 659, 698]
-      ],
-      lofi: [
-        [330, 349, 392, 349, 330, 294, 330, 349],
-        [392, 440, 392, 349, 330, 294, 262, 294]
-      ],
-      strings: [
-        [349, 392, 440, 466, 440, 392, 349, 330],
-        [294, 349, 392, 440, 392, 349, 330, 294]
-      ],
-      ukulele: [
-        [440, 494, 523, 587, 659, 587, 523, 494],
-        [523, 587, 659, 698, 784, 698, 659, 587]
-      ],
-      nature: [
-        [294, 330, 349, 392, 349, 330, 294, 262],
-        [349, 392, 440, 392, 349, 330, 294, 262]
-      ],
-      classical: [
-        [392, 440, 494, 523, 587, 659, 587, 523],
-        [494, 440, 392, 349, 330, 349, 392, 440]
-      ]
+      ambient: [[262, 293, 330, 349, 392, 349, 330, 293], [392, 440, 392, 349, 330, 293, 262, 293]],
+      piano: [[523, 587, 659, 698, 784, 880, 784, 698], [659, 587, 523, 494, 523, 587, 659, 698]],
+      lofi: [[330, 349, 392, 349, 330, 294, 330, 349], [392, 440, 392, 349, 330, 294, 262, 294]],
+      strings: [[349, 392, 440, 466, 440, 392, 349, 330], [294, 349, 392, 440, 392, 349, 330, 294]],
+      ukulele: [[440, 494, 523, 587, 659, 587, 523, 494], [523, 587, 659, 698, 784, 698, 659, 587]],
+      nature: [[294, 330, 349, 392, 349, 330, 294, 262], [349, 392, 440, 392, 349, 330, 294, 262]],
+      classical: [[392, 440, 494, 523, 587, 659, 587, 523], [494, 440, 392, 349, 330, 349, 392, 440]]
     };
 
     const selectedNotes = notes[type] || notes.ambient;
@@ -836,7 +813,6 @@
     function playNextNote() {
       const pattern = selectedNotes[patternIndex];
       const freq = pattern[noteIndex];
-
       const osc1 = audioCtx.createOscillator();
       const gain1 = audioCtx.createGain();
       osc1.type = type === 'lofi' ? 'triangle' : type === 'strings' ? 'sawtooth' : type === 'ukulele' ? 'sine' : 'sine';
@@ -948,7 +924,6 @@
       const gain2 = audioCtx.createGain();
       osc2.connect(gain2);
       gain2.connect(audioCtx.destination);
-      
       osc.type = 'sawtooth';
       osc.frequency.setValueAtTime(600, audioCtx.currentTime);
       osc.frequency.exponentialRampToValueAtTime(900, audioCtx.currentTime + 0.1);
@@ -958,7 +933,6 @@
       gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
       osc.start(audioCtx.currentTime);
       osc.stop(audioCtx.currentTime + 0.4);
-      
       osc2.type = 'square';
       osc2.frequency.setValueAtTime(300, audioCtx.currentTime);
       osc2.frequency.exponentialRampToValueAtTime(500, audioCtx.currentTime + 0.15);
@@ -970,7 +944,6 @@
     }
   }
 
-  // --- ПАРОЛЬ ---
   const passwordScreen = document.getElementById('password-screen');
   const mainContent = document.getElementById('main-content');
   const passwordInput = document.getElementById('password-input');
@@ -1008,7 +981,6 @@
     }
   });
 
-  // --- МЕНЮ НАСТРОЕК ---
   colorMenuToggle.addEventListener('click', () => {
     playSound('click');
     settingsMenu.style.display = settingsMenu.style.display === 'block' ? 'none' : 'block';
@@ -1031,7 +1003,6 @@
     });
   });
 
-  // --- ПОДАРОК ---
   const reasons = [
     "1. нам всегда есть о чём поговорить ♡",
     "2. мне никогда не бывает с тобой скучно ♡",
@@ -1057,7 +1028,6 @@
     }
   });
 
-  // --- РЫБКИ ---
   const fishArea = document.getElementById('fish-area');
   const fishCountSpan = document.getElementById('fish-count');
   const fishAchievementDiv = document.getElementById('fish-achievement');
@@ -1111,7 +1081,6 @@
         achDiv.textContent = achievements[fishCaught];
         fishAchievementDiv.appendChild(achDiv);
         
-        // На 67 рыбках показываем доходягу, уведомление и включаем музыку
         if (fishCaught === 67) {
           dohodyagaImg.style.display = 'block';
           moveDohodyagaRandom();
@@ -1155,33 +1124,18 @@
     moveDohodyagaRandom();
   });
 
-  // --- СПИСКИ ПРОСМОТРА С СОХРАНЕНИЕМ ---
   const moviesList = [
-    "backrooms",
-    "шоу Трумана",
-    "одержимость",
-    "the rolling giant",
-    "Джейн-катастрофа",
-    "old boy 2003",
-    "guru 2025",
-    "черный ящик",
+    "backrooms", "шоу Трумана", "одержимость", "the rolling giant",
+    "Джейн-катастрофа", "old boy 2003", "guru 2025", "черный ящик",
     "богиня: как я полюбила"
   ];
 
   const animeList = [
-    "chainsmokers cat",
-    "человек бензопила",
-    "брачный сезон",
-    "муми-тролли (советские)",
-    "благоухающий цветок расцветает с достоинством",
-    "зверополис 2",
-    "дом-монстр 2006",
-    "как приручить дракона",
-    "sky: children's of the light",
-    "дерево и кошка",
-    "5 сантиметров в секунду",
-    "монстр",
-    "звездочка Баттерфляй"
+    "chainsmokers cat", "человек бензопила", "брачный сезон",
+    "муми-тролли (советские)", "благоухающий цветок расцветает с достоинством",
+    "зверополис 2", "дом-монстр 2006", "как приручить дракона",
+    "sky: children's of the light", "дерево и кошка", "5 сантиметров в секунду",
+    "монстр", "звездочка Баттерфляй"
   ];
 
   const STORAGE_KEY = 'tigor_watchlist_watched';
