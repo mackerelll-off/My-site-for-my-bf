@@ -25,6 +25,28 @@
       transition: background 0.5s;
     }
 
+    /* УВЕДОМЛЕНИЕ */
+    .notification {
+      position: fixed;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #e91e63;
+      color: white;
+      padding: 16px 30px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 2000;
+      box-shadow: 0 10px 30px rgba(233,30,99,0.4);
+      transition: top 0.5s ease;
+      white-space: nowrap;
+    }
+
+    .notification.show {
+      top: 30px;
+    }
+
     #color-menu-toggle {
       position: fixed;
       top: 20px;
@@ -538,6 +560,7 @@
     body.theme-blue .contact-link, body.theme-blue .phone-number { background: #e3f2fd; border-color: #90caf9; color: #0d47a1; }
     body.theme-blue .watchlist-item { background: #e8f4fd; border-left-color: #90caf9; color: #0d47a1; }
     body.theme-blue .watchlist-item.watched { background: #e0e0e0; }
+    body.theme-blue .notification { background: #1565c0; }
 
     body.theme-yellow {
       background: linear-gradient(135deg, #fffde7 0%, #fff9c4 50%, #fff176 100%);
@@ -552,6 +575,7 @@
     body.theme-yellow .contact-link, body.theme-yellow .phone-number { background: #fffde7; border-color: #ffe082; color: #f57f17; }
     body.theme-yellow .watchlist-item { background: #fffef5; border-left-color: #ffe082; color: #5d4037; }
     body.theme-yellow .watchlist-item.watched { background: #f0f0f0; }
+    body.theme-yellow .notification { background: #f57f17; }
 
     body.theme-green {
       background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
@@ -566,6 +590,7 @@
     body.theme-green .contact-link, body.theme-green .phone-number { background: #e8f5e9; border-color: #a5d6a7; color: #1b5e20; }
     body.theme-green .watchlist-item { background: #e8f5e9; border-left-color: #a5d6a7; color: #1b5e20; }
     body.theme-green .watchlist-item.watched { background: #e0e0e0; }
+    body.theme-green .notification { background: #2e7d32; }
 
     body.theme-black {
       background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
@@ -592,6 +617,7 @@
     body.theme-black .music-btn.active { background: #4a3a5e; border-color: #bb86fc; }
     body.theme-black .watchlist-item { background: #333; border-left-color: #bb86fc; color: #e0e0e0; }
     body.theme-black .watchlist-item.watched { background: #222; }
+    body.theme-black .notification { background: #bb86fc; color: #1a1a1a; }
 
     body.theme-white {
       background: #f5f5f5;
@@ -613,9 +639,13 @@
     body.theme-white .contact-link:hover { background: #eeeeee; }
     body.theme-white .watchlist-item { background: #f5f5f5; border-left-color: #bdbdbd; color: #424242; }
     body.theme-white .watchlist-item.watched { background: #e8e8e8; }
+    body.theme-white .notification { background: #757575; }
   </style>
 </head>
 <body class="theme-pink">
+
+<!-- УВЕДОМЛЕНИЕ -->
+<div class="notification" id="notification">смотри, это же доходяга!!</div>
 
 <button id="color-menu-toggle" title="Настройки">⚙️</button>
 <div id="settings-menu">
@@ -659,8 +689,8 @@
 <div id="main-content">
 
   <div class="card love-letter">
-     любимый мой Тигорь! ♡ ты — самый лучший мальчик на свете, и мне реально невероятно повезло, что судьба подарила мне тебя. ты буквально (губами) стал для меня самым близким человеком, тем, с кем хочется делить всё — начиная от счастливых моментов, заканчивая грустными. и в горе и в радости так сказать. 
-     я очень очень тебя люблю и сильно дорожу твоим присутствием в моей жизни. моё самое заветное желание — это прожить с тобой целую жизнь. некоторые пары переживают из-за ревности, измен, проблем в отношениях, а я больше переживаю, как бы с тобой что ни случилось, всегда переживаю в порядке ли твое здоровье. 
+     любимый мой Тигорь! ♡ ты — самый лучший мальчик на свете, и мне реально невероятно повезло, что судьба подарила мне тебя. ты буквально (губами) стал для меня самым близким человеком, тем, с кем хочется делить всё, начиная от счастливых моментов, заканчивая грустными. и в горе и в радости так сказать. 
+     я очень очень тебя люблю и сильно дорожу твоим присутствием в моей жизни. моё самое заветное желание — это прожить с тобой целую жизнь. некоторые пары переживают из-за всяких проблем в отношениях, а я больше переживаю, как бы с тобой что ни случилось. 
 я вижу наше совместное будущее, вижу нашу счастливую семью, построенную на любви и доверии, и ничего другого мне не нужно. я всегда буду рядом и, надеюсь, это взаимно с твоей стороны. люблю тебя ♡
   </div>
 
@@ -726,10 +756,20 @@
 </div>
 
 <script>
+  // --- УВЕДОМЛЕНИЕ ---
+  const notification = document.getElementById('notification');
+
+  function showNotification() {
+    notification.classList.add('show');
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 4000);
+  }
+
   // --- MP3 АУДИО ДЛЯ ДОХОДЯГИ ---
   const mp3Dohodyaga = new Audio('https://github.com/mackerelll-off/My-site-sounds/raw/refs/heads/main/copy_FCE512F0-CFF9-4B95-AD49-DE5E8D650EF5.mp3');
   mp3Dohodyaga.loop = true;
-  mp3Dohodyaga.volume = 0.07; // Оставлено как было: 7%
+  mp3Dohodyaga.volume = 0.05; // 5% громкости
 
   let dohodyagaMusicActive = false;
 
@@ -737,7 +777,7 @@
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   let masterGain = audioCtx.createGain();
   masterGain.connect(audioCtx.destination);
-  masterGain.gain.value = 0.10; // Увеличено до 10%
+  masterGain.gain.value = 0.10;
 
   let musicNodes = [];
   let currentMusic = 'ambient';
@@ -1033,7 +1073,7 @@
     40: "у тебя замечательная душа ♡",
     50: "и большой ху- ♡",
     60: "у тебя афигенное чувство юмора хэхэ ♡",
-    70: "смотри это же доходяга",
+    67: "смотри это же доходяга",
     80: "ты классно епешься кстати （＾ω＾） ♡",
     90: "у тебя вкусные пяточки ♡",
     100: "короче говоря ты просто прекрасен и душой, и разумом, и телом. я в шоке, что ухватила такого замечательного мужа себе, спасибо большое матушке судьбе 🙏 ♡"
@@ -1071,10 +1111,12 @@
         achDiv.textContent = achievements[fishCaught];
         fishAchievementDiv.appendChild(achDiv);
         
-        if (fishCaught === 70) {
+        // На 67 рыбках показываем доходягу, уведомление и включаем музыку
+        if (fishCaught === 67) {
           dohodyagaImg.style.display = 'block';
           moveDohodyagaRandom();
           startDohodyagaMusic();
+          showNotification();
         }
       }
     });
