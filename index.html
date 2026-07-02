@@ -28,6 +28,18 @@
       transition: background 0.5s;
     }
 
+    /* ВЕРСИЯ */
+    .version-label {
+      position: fixed;
+      top: 12px;
+      left: 16px;
+      font-size: 11px;
+      color: rgba(180, 100, 130, 0.6);
+      z-index: 1001;
+      font-family: monospace;
+      letter-spacing: 0.5px;
+    }
+
     .notification {
       position: fixed;
       top: -80px;
@@ -545,13 +557,10 @@
     }
 
     /* Темы */
-    body.theme-pink {
-      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
-    }
+    body.theme-pink { background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%); }
+    body.theme-pink .version-label { color: rgba(180, 100, 130, 0.6); }
 
-    body.theme-blue {
-      background: linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 50%, #81d4fa 100%);
-    }
+    body.theme-blue { background: linear-gradient(135deg, #e3f2fd 0%, #b3e5fc 50%, #81d4fa 100%); }
     body.theme-blue .card { background: rgba(255, 255, 255, 0.85); }
     body.theme-blue .love-letter { background: #f5faff; border-left-color: #64b5f6; }
     body.theme-blue .section-title { color: #0d47a1; }
@@ -563,10 +572,9 @@
     body.theme-blue .watchlist-item { background: #e8f4fd; border-left-color: #90caf9; color: #0d47a1; }
     body.theme-blue .watchlist-item.watched { background: #e0e0e0; }
     body.theme-blue .notification { background: #1565c0; }
+    body.theme-blue .version-label { color: rgba(80, 140, 200, 0.5); }
 
-    body.theme-yellow {
-      background: linear-gradient(135deg, #fffde7 0%, #fff9c4 50%, #fff176 100%);
-    }
+    body.theme-yellow { background: linear-gradient(135deg, #fffde7 0%, #fff9c4 50%, #fff176 100%); }
     body.theme-yellow .card { background: rgba(255, 255, 255, 0.85); }
     body.theme-yellow .love-letter { background: #fffef5; border-left-color: #fdd835; }
     body.theme-yellow .section-title { color: #f57f17; }
@@ -578,10 +586,9 @@
     body.theme-yellow .watchlist-item { background: #fffef5; border-left-color: #ffe082; color: #5d4037; }
     body.theme-yellow .watchlist-item.watched { background: #f0f0f0; }
     body.theme-yellow .notification { background: #f57f17; }
+    body.theme-yellow .version-label { color: rgba(180, 160, 80, 0.5); }
 
-    body.theme-green {
-      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
-    }
+    body.theme-green { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%); }
     body.theme-green .card { background: rgba(255, 255, 255, 0.85); }
     body.theme-green .love-letter { background: #f5faf5; border-left-color: #66bb6a; }
     body.theme-green .section-title { color: #1b5e20; }
@@ -593,10 +600,9 @@
     body.theme-green .watchlist-item { background: #e8f5e9; border-left-color: #a5d6a7; color: #1b5e20; }
     body.theme-green .watchlist-item.watched { background: #e0e0e0; }
     body.theme-green .notification { background: #2e7d32; }
+    body.theme-green .version-label { color: rgba(80, 140, 80, 0.5); }
 
-    body.theme-black {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-    }
+    body.theme-black { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%); }
     body.theme-black .card { background: rgba(40, 40, 40, 0.9); border-color: #444; color: #e0e0e0; }
     body.theme-black .love-letter { background: #2a2a2a; border-left-color: #bb86fc; color: #e0e0e0; }
     body.theme-black .section-title { color: #bb86fc; }
@@ -620,10 +626,9 @@
     body.theme-black .watchlist-item { background: #333; border-left-color: #bb86fc; color: #e0e0e0; }
     body.theme-black .watchlist-item.watched { background: #222; }
     body.theme-black .notification { background: #bb86fc; color: #1a1a1a; }
+    body.theme-black .version-label { color: rgba(180, 180, 180, 0.4); }
 
-    body.theme-white {
-      background: #f5f5f5;
-    }
+    body.theme-white { background: #f5f5f5; }
     body.theme-white .card { background: #ffffff; border-color: #e0e0e0; }
     body.theme-white .love-letter { background: #fafafa; border-left-color: #9e9e9e; color: #333; }
     body.theme-white .section-title { color: #424242; }
@@ -642,9 +647,13 @@
     body.theme-white .watchlist-item { background: #f5f5f5; border-left-color: #bdbdbd; color: #424242; }
     body.theme-white .watchlist-item.watched { background: #e8e8e8; }
     body.theme-white .notification { background: #757575; }
+    body.theme-white .version-label { color: rgba(150, 150, 150, 0.5); }
   </style>
 </head>
 <body class="theme-pink">
+
+<!-- ВЕРСИЯ -->
+<div class="version-label">v1.0.0</div>
 
 <div class="notification" id="notification">смотри, это же доходяга!!</div>
 
